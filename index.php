@@ -5,33 +5,49 @@
     <title>Кухтулятор</title>
 </head>
 <body>
-<form action="" method="POST" class="calculate-form">
-        <input type="text" name="number1" class="numbers">
-    <select class="operations" name="operation">
-        <option value='plus'>+</option>
-        <option value='minus'>-</option>
+<form action="/" method="POST">
+    <input type="text" name="number1">
+    <select name="operation">
+        <option value='+'>+</option>
+        <option value='-'>-</option>
+        <option value="*">*</option>
+        <option value="/">/</option>
     </select>
-        <input type="text" name="number2" class="numbers">
-    <input class="submit_form" type="submit" name="submit" value="Результат">
+    <input type="text" name="number2">
+    <input type="submit" name="submit" value="Результат">
 </form>
 </body>
 </html>
 
 <?php
-if(isset($_POST['submit'])) {
+$result = 0;
+if (isset($_POST['submit'])) {
     $number1 = $_POST['number1'];
     $number2 = $_POST['number2'];
     $operation = $_POST['operation'];
     switch ($operation) {
-        case 'plus':
+        case '+':
             $result = $number1 + $number2;
             break;
-        case 'minus':
+        case '-':
             $result = $number1 - $number2;
             break;
+        case '*':
+            $result = $number1 * $number2;
+            break;
+        case '/':
+            if( $number2 == '0')
+                $error_result = "На ноль делить нельзя!";
+            else
+            $result = $number1 / $number2;
+            break;
+
+
+    if(isset($error_result))
+        echo ' Ошибка: ' . $error_result;
     }
-{
-        echo "<div class='answer-text'>Ответ:$number1$operation$number2 = $result</div>";
-    }
+
+    echo ' Ответ: ' . $number1 . ' ' . $operation . ' ' . $number2 . ' ' . '=' . ' ' . $result;
+
 }
 ?>
