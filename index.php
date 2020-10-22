@@ -36,18 +36,19 @@ if (isset($_POST['submit'])) {
             $result = $number1 * $number2;
             break;
         case '/':
-            if( $number2 == '0')
+            if( $number2 == 0)
                 $error_result = "На ноль делить нельзя!";
             else
-            $result = $number1 / $number2;
+                $result = $number1 / $number2;
             break;
+            }
 
 
-    if(isset($error_result))
-        echo ' Ошибка: ' . $error_result;
+    if(empty($error_result)){
+        echo ' Ответ: ' . $number1 . ' ' . $operation . ' ' . $number2 . ' ' . '=' . ' ' . $result;}
+
+    else {
+        echo $error_result;
     }
-
-    echo ' Ответ: ' . $number1 . ' ' . $operation . ' ' . $number2 . ' ' . '=' . ' ' . $result;
-
 }
 ?>
